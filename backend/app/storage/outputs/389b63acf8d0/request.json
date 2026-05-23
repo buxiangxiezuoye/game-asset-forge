@@ -1,0 +1,12 @@
+{
+  "prompt": "原神胡桃",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 256,
+  "height": 256,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

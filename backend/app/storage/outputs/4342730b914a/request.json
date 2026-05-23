@@ -1,0 +1,12 @@
+{
+  "prompt": "一把火焰剑",
+  "assetType": "item",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "none",
+  "transparent": true,
+  "seed": 7,
+  "exportTarget": "generic"
+}

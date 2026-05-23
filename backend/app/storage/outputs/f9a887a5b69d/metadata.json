@@ -1,0 +1,30 @@
+{
+  "jobId": "f9a887a5b69d",
+  "prompt": "1",
+  "assetType": "enemy",
+  "styleId": "hand_drawn",
+  "frameWidth": 256,
+  "frameHeight": 256,
+  "frameCount": 1,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 256,
+      "h": 256,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 42,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T13:24:29.044957+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

@@ -9,6 +9,7 @@ from app.models import (
     BatchGenerateRequest, BatchGenerateResponse,
     JobStatus, StyleInfo,
 )
+from app.config import settings
 from app.services.asset_service import AssetService
 from app.services.style_service import StyleService
 
@@ -50,6 +51,8 @@ async def list_styles():
 async def generate(req: GenerateRequest):
     try:
         return asset_service.generate(req)
+    except RuntimeError as e:
+        raise HTTPException(status_code=502, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -58,6 +61,11 @@ async def generate(req: GenerateRequest):
 
 @app.post("/api/batch", response_model=BatchGenerateResponse)
 async def batch_generate(req: BatchGenerateRequest):
+    if len(req.prompts) > settings.max_batch_size:
+        raise HTTPException(
+            status_code=400,
+            detail=f"批量生成最多 {settings.max_batch_size} 个 prompt，收到 {len(req.prompts)} 个",
+        )
     return asset_service.batch_generate(req)
 
 

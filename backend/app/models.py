@@ -1,7 +1,14 @@
 from __future__ import annotations
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+
+# ==================== 校验常量 ====================
+
+ALLOWED_SIZES = frozenset({16, 32, 64, 128, 256})
+VALID_ASSET_TYPES = frozenset({"character", "enemy", "item", "tile", "ui", "ui_icon"})
+VALID_STYLE_IDS = frozenset({"pixel_art", "flat_cartoon"})
 
 
 # ==================== Enums ====================
@@ -18,16 +25,6 @@ class AssetType(str, Enum):
 class StyleId(str, Enum):
     PIXEL_ART = "pixel_art"
     FLAT_CARTOON = "flat_cartoon"
-    FANTASY_PAINTERLY = "fantasy_painterly"
-    SCI_FI_UI = "sci_fi_ui"
-    HAND_DRAWN = "hand_drawn"
-
-
-class AnimationType(str, Enum):
-    IDLE = "idle"
-    MOVE = "move"
-    ATTACK = "attack"
-    NONE = "none"
 
 
 class ExportTarget(str, Enum):
@@ -36,9 +33,12 @@ class ExportTarget(str, Enum):
     GODOT = "godot"
 
 
-class AssetFrameType(str, Enum):
-    FRAME = "frame"
-    SPRITESHEET = "spritesheet"
+class AnimationType(str, Enum):
+    """Internal enum for procedural renderers — not exposed in the API."""
+    IDLE = "idle"
+    MOVE = "move"
+    ATTACK = "attack"
+    NONE = "none"
 
 
 # ==================== Style ====================
@@ -56,32 +56,49 @@ class StyleInfo(BaseModel):
 # ==================== Generate ====================
 
 class GenerateRequest(BaseModel):
-    prompt: str = Field(description="中文描述，如 '一只蓝色史莱姆'")
+    prompt: str = Field(
+        min_length=1,
+        max_length=300,
+        description="中文描述，如 '一只蓝色史莱姆'",
+    )
     assetType: AssetType = Field(default=AssetType.ENEMY)
     styleId: StyleId = Field(default=StyleId.PIXEL_ART)
-    width: int = Field(default=32, ge=16, le=256)
-    height: int = Field(default=32, ge=16, le=256)
-    frameCount: int = Field(default=1, ge=1, le=16, description="动画帧数")
-    animation: AnimationType = Field(default=AnimationType.IDLE)
+    width: int = Field(default=64, ge=16, le=256)
+    height: int = Field(default=64, ge=16, le=256)
     transparent: bool = Field(default=True)
     seed: Optional[int] = Field(default=None)
     exportTarget: ExportTarget = Field(default=ExportTarget.GENERIC)
+
+    @field_validator("width")
+    @classmethod
+    def width_must_be_allowed(cls, v: int) -> int:
+        if v not in ALLOWED_SIZES:
+            raise ValueError(f"width 必须是 {sorted(ALLOWED_SIZES)} 之一，收到 {v}")
+        return v
+
+    @field_validator("height")
+    @classmethod
+    def height_must_be_allowed(cls, v: int) -> int:
+        if v not in ALLOWED_SIZES:
+            raise ValueError(f"height 必须是 {sorted(ALLOWED_SIZES)} 之一，收到 {v}")
+        return v
 
 
 class AssetInfo(BaseModel):
     id: str
     url: str
-    type: AssetFrameType = AssetFrameType.FRAME
+    type: str = "frame"
     width: int
     height: int
 
 
 class GenerateResponse(BaseModel):
     jobId: str
-    status: str  # "completed" | "failed"
+    status: str
     assets: list[AssetInfo] = Field(default_factory=list)
     spritesheetUrl: str = ""
     metadataUrl: str = ""
+    cacheHit: bool = False
 
 
 # ==================== Batch ====================
@@ -92,10 +109,18 @@ class BatchGenerateRequest(BaseModel):
     styleId: StyleId = Field(default=StyleId.PIXEL_ART)
     width: int = Field(default=32)
     height: int = Field(default=32)
-    frameCount: int = Field(default=1)
-    animation: AnimationType = Field(default=AnimationType.IDLE)
     transparent: bool = Field(default=True)
     exportTarget: ExportTarget = Field(default=ExportTarget.GENERIC)
+
+    @field_validator("prompts")
+    @classmethod
+    def prompts_not_empty_and_limited(cls, v: list[str]) -> list[str]:
+        if not v:
+            raise ValueError("prompts 不能为空列表")
+        for p in v:
+            if not p or not p.strip():
+                raise ValueError("每个 prompt 不能为空")
+        return v
 
 
 class BatchGenerateResponse(BaseModel):
@@ -107,7 +132,7 @@ class BatchGenerateResponse(BaseModel):
 
 class JobStatus(BaseModel):
     jobId: str
-    status: str  # "completed" | "failed" | "processing"
+    status: str
     prompt: str
     assetType: AssetType
     styleId: StyleId
@@ -116,3 +141,4 @@ class JobStatus(BaseModel):
     metadataUrl: str = ""
     createdAt: str = ""
     error: str = ""
+    cacheHit: bool = False

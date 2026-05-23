@@ -1,0 +1,28 @@
+{
+  "jobId": "4c791dab5584",
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 64,
+      "h": 64,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 42,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T14:14:22.092849+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

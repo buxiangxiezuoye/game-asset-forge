@@ -1,0 +1,21 @@
+{
+  "size": [
+    258,
+    258
+  ],
+  "frameWidth": 256,
+  "frameHeight": 256,
+  "frameCount": 1,
+  "layout": "horizontal",
+  "padding": 1,
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 256,
+      "h": 256,
+      "duration": 100
+    }
+  ]
+}

@@ -44,7 +44,6 @@ class BaseGenerator(ABC):
             "style": self.req.styleId.value,
             "asset_type": self.req.assetType.value,
             "prompt": self.req.prompt,
-            "animation": self.req.animation.value,
             "frame": frame_index,
             "pivot": [w // 2, h // 2],
         })

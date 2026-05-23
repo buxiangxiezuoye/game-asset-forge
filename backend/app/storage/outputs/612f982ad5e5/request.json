@@ -1,0 +1,10 @@
+{
+  "prompt": "a red balloon",
+  "assetType": "item",
+  "styleId": "flat_cartoon",
+  "width": 128,
+  "height": 128,
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

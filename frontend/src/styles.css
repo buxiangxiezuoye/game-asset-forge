@@ -459,3 +459,60 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
 }
+
+/* ===== Cache Hit 提示 ===== */
+.cache-hit-badge {
+  padding: 10px 16px;
+  background: rgba(46, 204, 113, 0.12);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  border-radius: var(--radius);
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cache-tag {
+  background: rgba(46, 204, 113, 0.15) !important;
+  border-color: rgba(46, 204, 113, 0.4) !important;
+  color: var(--green) !important;
+}
+
+/* ===== 生成参数摘要 ===== */
+.params-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.params-bar code {
+  font-size: 0.75rem;
+  color: var(--accent2);
+  font-family: "SF Mono", "Consolas", monospace;
+  background: var(--bg);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ===== 复用 Seed 按钮 ===== */
+.reuse-seed-btn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: rgba(108, 92, 231, 0.15);
+  color: var(--accent2);
+  border: 1px solid rgba(108, 92, 231, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  vertical-align: middle;
+}
+
+.reuse-seed-btn:hover {
+  background: rgba(108, 92, 231, 0.3);
+  border-color: var(--accent);
+  color: #fff;
+}

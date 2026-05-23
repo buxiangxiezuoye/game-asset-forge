@@ -1,0 +1,10 @@
+{
+  "prompt": "王者荣耀亚瑟",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 128,
+  "height": 128,
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "unity"
+}

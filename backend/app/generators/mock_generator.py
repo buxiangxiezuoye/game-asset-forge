@@ -736,9 +736,8 @@ class MockGenerator(BaseGenerator):
 
     def _draw(self, img: Image.Image, frame_index: int = 0) -> dict:
         """兼容 BaseGenerator 接口（单帧绘制到给定 img）。"""
-        rendered = self.renderer.render(
-            frame_index, self.req.frameCount, self.req.animation
-        )
+        from app.models import AnimationType
+        rendered = self.renderer.render(frame_index, 1, AnimationType.NONE)
         img.paste(rendered, (0, 0))
         return {
             "tags": [self.parsed["shape"], self.parsed.get("element", "")],
@@ -749,9 +748,8 @@ class MockGenerator(BaseGenerator):
 
     def generate_single(self, frame_index: int = 0) -> tuple[Image.Image, dict]:
         """生成单帧 — 直接调用渲染器。"""
-        rendered = self.renderer.render(
-            frame_index, self.req.frameCount, self.req.animation
-        )
+        from app.models import AnimationType
+        rendered = self.renderer.render(frame_index, 1, AnimationType.NONE)
         meta = {
             "seed": self.seed,
             "width": self.req.width,
@@ -759,7 +757,6 @@ class MockGenerator(BaseGenerator):
             "style": self.req.styleId.value,
             "asset_type": self.req.assetType.value,
             "prompt": self.req.prompt,
-            "animation": self.req.animation.value,
             "frame": frame_index,
             "shape": self.parsed["shape"],
             "element": self.parsed.get("element", ""),

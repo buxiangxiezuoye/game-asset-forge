@@ -1,0 +1,16 @@
+{
+  "seed": 99,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "火焰球",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "slime",
+  "element": "fire",
+  "pivot": [
+    32,
+    32
+  ]
+}

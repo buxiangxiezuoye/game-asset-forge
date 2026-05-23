@@ -1,0 +1,10 @@
+{
+  "prompt": "a blue slime",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

@@ -1,0 +1,28 @@
+{
+  "jobId": "70b474bd0d8f",
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "enemy",
+  "styleId": "flat_cartoon",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 128,
+      "h": 128,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 42,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T14:14:40.045699+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

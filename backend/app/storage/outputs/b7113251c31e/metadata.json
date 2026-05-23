@@ -1,0 +1,28 @@
+{
+  "jobId": "b7113251c31e",
+  "prompt": "王者荣耀鲁班七号",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 128,
+      "h": 128,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 42,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T14:33:45.638624+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

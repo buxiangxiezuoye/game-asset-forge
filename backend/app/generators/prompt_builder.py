@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.models import AssetType, StyleId, GenerateRequest, AnimationType, ExportTarget
+from app.models import AssetType, StyleId, GenerateRequest, ExportTarget
 
 
 class PromptBuilder:
@@ -45,8 +45,6 @@ class PromptBuilder:
         style_id: StyleId = StyleId.FLAT_CARTOON,
         width: int = 32,
         height: int = 32,
-        frame_count: int = 1,
-        animation: AnimationType = AnimationType.IDLE,
         transparent: bool = True,
         seed: int | None = None,
         export_target: ExportTarget = ExportTarget.GENERIC,
@@ -60,8 +58,6 @@ class PromptBuilder:
             styleId=style_id,
             width=width,
             height=height,
-            frameCount=frame_count,
-            animation=animation,
             transparent=transparent,
             seed=seed,
             exportTarget=export_target,

@@ -1,0 +1,12 @@
+{
+  "prompt": "原神甘雨",
+  "assetType": "character",
+  "styleId": "flat_cartoon",
+  "width": 64,
+  "height": 64,
+  "frameCount": 4,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

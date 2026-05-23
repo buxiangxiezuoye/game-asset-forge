@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "一个绿色的剑",
+  "animation": "idle",
+  "frame": 1,
+  "shape": "sword",
+  "element": "neutral",
+  "pivot": [
+    32,
+    32
+  ]
+}

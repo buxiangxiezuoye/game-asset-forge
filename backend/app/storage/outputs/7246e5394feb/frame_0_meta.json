@@ -1,0 +1,15 @@
+{
+  "seed": 1798460032,
+  "width": 32,
+  "height": 32,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "test",
+  "frame": 0,
+  "shape": "slime",
+  "element": "neutral",
+  "pivot": [
+    16,
+    16
+  ]
+}

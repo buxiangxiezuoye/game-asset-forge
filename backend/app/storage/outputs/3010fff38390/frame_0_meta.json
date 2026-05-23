@@ -1,0 +1,14 @@
+{
+  "seed": 1464183395,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "a blue slime",
+  "enhanced_prompt": "pixel art, 16-bit, sprite, game asset, sharp edges, limited palette, retro game, a blue slime",
+  "generator": "ai_http",
+  "pivot": [
+    32,
+    32
+  ]
+}

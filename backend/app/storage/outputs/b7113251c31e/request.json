@@ -1,0 +1,10 @@
+{
+  "prompt": "王者荣耀鲁班七号",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 128,
+  "height": 128,
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

@@ -1,0 +1,30 @@
+{
+  "jobId": "4342730b914a",
+  "prompt": "一把火焰剑",
+  "assetType": "item",
+  "styleId": "pixel_art",
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "frameCount": 1,
+  "animation": "none",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 64,
+      "h": 64,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 7,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T13:34:11.668432+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

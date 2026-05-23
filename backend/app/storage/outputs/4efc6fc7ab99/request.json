@@ -1,0 +1,10 @@
+{
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "enemy",
+  "styleId": "flat_cartoon",
+  "width": 256,
+  "height": 256,
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

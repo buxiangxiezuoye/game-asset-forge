@@ -1,0 +1,12 @@
+{
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 32,
+  "height": 32,
+  "frameCount": 2,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

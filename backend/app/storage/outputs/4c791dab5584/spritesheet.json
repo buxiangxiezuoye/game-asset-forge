@@ -1,0 +1,21 @@
+{
+  "size": [
+    66,
+    66
+  ],
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "frameCount": 1,
+  "layout": "horizontal",
+  "padding": 1,
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 64,
+      "h": 64,
+      "duration": 100
+    }
+  ]
+}

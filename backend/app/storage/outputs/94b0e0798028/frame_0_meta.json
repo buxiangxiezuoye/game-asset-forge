@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 256,
+  "height": 256,
+  "style": "hand_drawn",
+  "asset_type": "character",
+  "prompt": "1",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "humanoid",
+  "element": "neutral",
+  "pivot": [
+    128,
+    128
+  ]
+}

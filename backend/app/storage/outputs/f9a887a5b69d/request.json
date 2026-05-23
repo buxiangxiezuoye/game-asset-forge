@@ -1,0 +1,12 @@
+{
+  "prompt": "1",
+  "assetType": "enemy",
+  "styleId": "hand_drawn",
+  "width": 256,
+  "height": 256,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

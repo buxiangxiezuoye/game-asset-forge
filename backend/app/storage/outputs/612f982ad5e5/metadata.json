@@ -1,0 +1,28 @@
+{
+  "jobId": "612f982ad5e5",
+  "prompt": "a red balloon",
+  "assetType": "item",
+  "styleId": "flat_cartoon",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 1,
+      "y": 1,
+      "w": 128,
+      "h": 128,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 117660940,
+  "cacheHit": false,
+  "generatedAt": "2026-05-23T14:13:21.996088+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

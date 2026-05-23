@@ -1,0 +1,14 @@
+{
+  "seed": 117660940,
+  "width": 128,
+  "height": 128,
+  "style": "flat_cartoon",
+  "asset_type": "item",
+  "prompt": "a red balloon",
+  "enhanced_prompt": "flat cartoon, 2d game asset, bold outlines, vibrant colors, simple shapes, casual game art, a red balloon",
+  "generator": "ai_http",
+  "pivot": [
+    64,
+    64
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "sci_fi_ui",
+  "asset_type": "item",
+  "prompt": "一个火焰剑",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "sword",
+  "element": "fire",
+  "pivot": [
+    32,
+    32
+  ]
+}

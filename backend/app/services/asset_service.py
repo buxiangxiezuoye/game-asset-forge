@@ -1,18 +1,24 @@
 from __future__ import annotations
+import os
+import hashlib
 import json
 import uuid
 import io
+import random
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from PIL import Image
-from app.config import OUTPUTS_DIR
+from app.config import OUTPUTS_DIR, settings
 from app.models import (
     GenerateRequest, GenerateResponse, AssetInfo,
     BatchGenerateRequest, BatchGenerateResponse,
-    JobStatus, AssetFrameType,
+    JobStatus,
 )
-from app.generators.mock_generator import MockGenerator
+from app.generators.base_provider import BaseImageProvider
 from app.services.spritesheet_service import SpriteSheetService
+
+logger = logging.getLogger(__name__)
 
 
 class AssetService:
@@ -20,10 +26,45 @@ class AssetService:
 
     def __init__(self):
         self._jobs: dict[str, dict] = {}
+        self._cache: dict[str, str] = {}  # hash → jobId
+
+    # ==================== 缓存工具 ====================
+
+    @staticmethod
+    def _build_cache_key(req: GenerateRequest) -> str:
+        """为请求构建确定性缓存键。"""
+        raw = "|".join([
+            req.prompt.strip(),
+            req.assetType.value,
+            req.styleId.value,
+            str(req.width),
+            str(req.height),
+            str(req.seed),
+        ])
+        return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+    @staticmethod
+    def _resolve_seed(req: GenerateRequest) -> int:
+        return req.seed if req.seed is not None else random.randint(0, 2**31 - 1)
 
     # ==================== 生成 ====================
 
     def generate(self, req: GenerateRequest) -> GenerateResponse:
+        # —— 缓存检查 ——
+        cache_key = self._build_cache_key(req)
+        cached_job_id = self._cache.get(cache_key)
+        if cached_job_id and cached_job_id in self._jobs:
+            job = self._jobs[cached_job_id]
+            logger.info("Cache HIT → %s", cached_job_id)
+            return GenerateResponse(
+                jobId=cached_job_id,
+                status=job["status"],
+                assets=job["assets"],
+                spritesheetUrl=f"/outputs/{cached_job_id}/spritesheet.png",
+                metadataUrl=f"/outputs/{cached_job_id}/metadata.json",
+                cacheHit=True,
+            )
+
         job_id = uuid.uuid4().hex[:12]
         job_dir = OUTPUTS_DIR / job_id
         job_dir.mkdir(parents=True, exist_ok=True)
@@ -32,30 +73,51 @@ class AssetService:
         req_path = job_dir / "request.json"
         req_path.write_text(req.model_dump_json(indent=2), encoding="utf-8")
 
-        generator = MockGenerator(req)
+        seed = self._resolve_seed(req)
+        mode = os.getenv("IMAGE_PROVIDER_MODE", "mock").strip().lower()
+
+        if mode == "mock":
+            from app.generators.mock_generator import MockGenerator
+            mock_gen = MockGenerator(req)
+            img, meta = mock_gen.generate_single()
+
+        elif mode == "http":
+            from app.services.style_service import StyleService
+            style_data = StyleService.get_style(req.styleId)
+            ai_provider = self._create_ai_provider()
+            img, meta = self._generate_one_ai(ai_provider, seed, style_data, req)
+
+        else:
+            raise RuntimeError(
+                f"不支持的 IMAGE_PROVIDER_MODE: '{mode}'。"
+                f"请设置为 'http'（调用 AI 图像 API）或 'mock'（程序化生成开发模式）。"
+            )
+
+        # 质量控制：确保 RGBA + 居中
+        img = self._ensure_rgba(img)
+        img = self._center_crop(img, req.width, req.height)
+
+        frame_id = f"{job_id}_f0"
+        fname = "frame_0.png"
+        frame_path = job_dir / fname
+        img.save(frame_path, format="PNG")
+
+        meta_path = job_dir / "frame_0_meta.json"
+        meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+
         assets: list[AssetInfo] = []
         pil_images: list[Image.Image] = []
 
-        for fi in range(req.frameCount):
-            img, meta = generator.generate_single(fi)
-            frame_id = f"{job_id}_f{fi}"
-            fname = f"frame_{fi}.png"
-            frame_path = job_dir / fname
-            img.save(frame_path, format="PNG")
+        assets.append(AssetInfo(
+            id=frame_id,
+            url=f"/outputs/{job_id}/{fname}",
+            type="frame",
+            width=req.width,
+            height=req.height,
+        ))
+        pil_images.append(img)
 
-            meta_path = job_dir / f"frame_{fi}_meta.json"
-            meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-
-            assets.append(AssetInfo(
-                id=frame_id,
-                url=f"/outputs/{job_id}/{fname}",
-                type=AssetFrameType.FRAME,
-                width=req.width,
-                height=req.height,
-            ))
-            pil_images.append(img)
-
-        # Sprite Sheet — 横向排列
+        # Sprite Sheet — 横向排列（带间距）
         spritesheet_bytes, sheet_meta = SpriteSheetService.build_from_pil(
             pil_images, req.width, req.height
         )
@@ -72,12 +134,11 @@ class AssetService:
             "styleId": req.styleId.value,
             "frameWidth": req.width,
             "frameHeight": req.height,
-            "frameCount": req.frameCount,
-            "animation": req.animation.value,
             "spritesheet": "spritesheet.png",
             "frames": sheet_meta.get("frames", []),
             "exportTarget": req.exportTarget.value,
-            "seed": generator.seed,
+            "seed": seed,
+            "cacheHit": False,
             "generatedAt": datetime.now(timezone.utc).isoformat(),
             "compatibleWith": ["Unity", "Godot", "Aseprite"],
         }
@@ -89,9 +150,12 @@ class AssetService:
             "status": "completed",
             "req": req,
             "assets": assets,
-            "seed": generator.seed,
+            "seed": seed,
             "createdAt": datetime.now(timezone.utc).isoformat(),
         }
+
+        # 写入缓存
+        self._cache[cache_key] = job_id
 
         return GenerateResponse(
             jobId=job_id,
@@ -99,11 +163,18 @@ class AssetService:
             assets=assets,
             spritesheetUrl=f"/outputs/{job_id}/spritesheet.png",
             metadataUrl=f"/outputs/{job_id}/metadata.json",
+            cacheHit=False,
         )
 
     # ==================== 批量生成 ====================
 
     def batch_generate(self, req: BatchGenerateRequest) -> BatchGenerateResponse:
+        max_batch = settings.max_batch_size
+        if len(req.prompts) > max_batch:
+            return BatchGenerateResponse(
+                jobIds=[],
+                message=f"批量生成最多同时 {max_batch} 个 prompt，收到 {len(req.prompts)} 个",
+            )
         job_ids: list[str] = []
         for prompt in req.prompts:
             greq = GenerateRequest(
@@ -112,8 +183,6 @@ class AssetService:
                 styleId=req.styleId,
                 width=req.width,
                 height=req.height,
-                frameCount=req.frameCount,
-                animation=req.animation,
                 transparent=req.transparent,
                 exportTarget=req.exportTarget,
             )
@@ -129,6 +198,16 @@ class AssetService:
             return None
 
         req = job["req"]
+        # 检查是否为缓存命中（通过 metadata 文件）
+        cache_hit = False
+        meta_path = OUTPUTS_DIR / job_id / "metadata.json"
+        if meta_path.exists():
+            try:
+                m = json.loads(meta_path.read_text(encoding="utf-8"))
+                cache_hit = m.get("cacheHit", False)
+            except Exception:
+                pass
+
         return JobStatus(
             jobId=job_id,
             status=job["status"],
@@ -139,7 +218,88 @@ class AssetService:
             spritesheetUrl=f"/outputs/{job_id}/spritesheet.png",
             metadataUrl=f"/outputs/{job_id}/metadata.json",
             createdAt=job.get("createdAt", ""),
+            cacheHit=cache_hit,
         )
+
+    # ==================== AI Provider 集成 ====================
+
+    @staticmethod
+    def _create_ai_provider() -> BaseImageProvider:
+        mode = os.getenv("IMAGE_PROVIDER_MODE", "mock").strip().lower()
+        if mode != "http":
+            raise RuntimeError(
+                f"IMAGE_PROVIDER_MODE 当前为 '{mode}'，不是 'http'，无法调用 AI 图像服务。"
+            )
+        try:
+            from app.generators.http_image_provider import HttpImageProvider
+            return HttpImageProvider()
+        except RuntimeError as e:
+            raise RuntimeError(f"AI 图像服务配置错误: {e}") from e
+
+    @staticmethod
+    def _generate_one_ai(
+        provider: BaseImageProvider,
+        seed: int,
+        style_data: dict,
+        req: GenerateRequest,
+    ) -> tuple[Image.Image, dict]:
+        """用 AI provider 生成单张图像并返回 metadata。"""
+        prompt = f"{style_data.get('promptPrefix', '')}, {req.prompt}".strip(", ")
+        negative = style_data.get("negativePrompt", "")
+
+        img = provider.generate(
+            prompt=prompt,
+            negative_prompt=negative,
+            width=req.width,
+            height=req.height,
+            seed=seed,
+        )
+
+        meta = {
+            "seed": seed,
+            "width": req.width,
+            "height": req.height,
+            "style": req.styleId.value,
+            "asset_type": req.assetType.value,
+            "prompt": req.prompt,
+            "enhanced_prompt": prompt,
+            "generator": "ai_http",
+            "pivot": [req.width // 2, req.height // 2],
+        }
+        return img, meta
+
+    # ==================== 质量控制 ====================
+
+    @staticmethod
+    def _ensure_rgba(img: Image.Image) -> Image.Image:
+        """确保图像为 RGBA 模式，保留透明背景。"""
+        if img.mode == "RGBA":
+            return img
+        if img.mode in ("RGB", "P", "L"):
+            img = img.convert("RGBA")
+        return img
+
+    @staticmethod
+    def _center_crop(img: Image.Image, target_w: int, target_h: int) -> Image.Image:
+        """如果图像尺寸不匹配目标，居中裁剪到目标尺寸。"""
+        iw, ih = img.size
+        if (iw, ih) == (target_w, target_h):
+            return img
+        # 计算裁剪区域
+        left = max(0, (iw - target_w) // 2)
+        top = max(0, (ih - target_h) // 2)
+        right = left + target_w
+        bottom = top + target_h
+        # 裁剪
+        cropped = img.crop((left, top, right, bottom))
+        # 如果裁剪后小于目标，贴到目标大小的透明画布上
+        if cropped.size != (target_w, target_h):
+            canvas = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
+            paste_x = max(0, (target_w - cropped.width) // 2)
+            paste_y = max(0, (target_h - cropped.height) // 2)
+            canvas.paste(cropped, (paste_x, paste_y))
+            return canvas
+        return cropped
 
     # ==================== ZIP 下载 ====================
 
@@ -205,8 +365,6 @@ class AssetService:
                 "assetType": req.assetType.value if req else "",
                 "width": req.width if req else 0,
                 "height": req.height if req else 0,
-                "frameCount": req.frameCount if req else 0,
-                "animation": req.animation.value if req else "",
                 "exportTarget": req.exportTarget.value if req else "",
                 "transparent": req.transparent if req else True,
             },
@@ -214,7 +372,7 @@ class AssetService:
 
     @staticmethod
     def _build_unity_guide(frame_w: int, frame_h: int) -> str:
-        cols = 4  # spritesheet columns
+        pad = settings.spritesheet_padding
         return f"""# Unity 导入指南
 
 ## 1. 导入 Sprite Sheet
@@ -235,6 +393,7 @@ class AssetService:
 2. 设置：
    - **Type** = `Grid By Cell Size`
    - **Pixel Size** = `{frame_w} x {frame_h}`
+   - **Offset** = `{pad}` (帧间间距)
 3. 点击 **Slice** → 右上角 **Apply**。
 4. 现在 Project 窗口展开 spritesheet 即可看到每帧独立 Sprite。
 
@@ -257,6 +416,7 @@ class AssetService:
 
     @staticmethod
     def _build_godot_guide(frame_w: int, frame_h: int) -> str:
+        pad = settings.spritesheet_padding
         return f"""# Godot 导入指南
 
 ## 1. 导入 PNG 素材
@@ -298,10 +458,18 @@ $AnimatedSprite2D.play("walk")
 4. 在 TileSet 底部面板中设置碰撞形状（可选）。
 5. 选择 TileMap 节点，在 2D 视图中使用画笔绘制地形。
 6. 可将多个 tile 添加到同一个 TileSet 中，通过 Atlas 管理。
+
+## 5. Sprite Sheet 切片
+
+Spritesheet 帧间有 {pad}px 透明间距。在 Godot 中可按固定尺寸切片：
+- Tile Width: `{frame_w}`
+- Tile Height: `{frame_h}`
+- Offset X: `{pad}`
 """
 
     @staticmethod
     def _build_aseprite_guide(frame_w: int, frame_h: int) -> str:
+        pad = settings.spritesheet_padding
         return f"""# Aseprite 导入指南
 
 ## 1. 打开 Sprite Sheet
@@ -316,13 +484,14 @@ $AnimatedSprite2D.play("walk")
 
 - `frameWidth`: {frame_w}px
 - `frameHeight`: {frame_h}px
+- `padding`: {pad}px （帧间间距）
 - `frames[]`: 每帧的 x, y, w, h 坐标
 
 在 Aseprite 中手动切帧：
 
 1. **File → Import Sprite Sheet...**
 2. 设置：
-   - **X**: 0, **Y**: 0
+   - **X**: {pad}, **Y**: {pad}
    - **Width**: {frame_w}, **Height**: {frame_h}
    - 勾选 **Import all frames**
 3. 点击 **OK**，Aseprite 会自动按网格排列每帧到独立 cel。

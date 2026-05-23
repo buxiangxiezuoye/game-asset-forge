@@ -1,0 +1,16 @@
+{
+  "seed": 7,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "item",
+  "prompt": "一把火焰剑",
+  "animation": "none",
+  "frame": 0,
+  "shape": "sword",
+  "element": "fire",
+  "pivot": [
+    32,
+    32
+  ]
+}

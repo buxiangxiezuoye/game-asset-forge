@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { healthCheck, generateAsset, assetUrl, downloadUrl } from "./api";
 import type {
   GenerateResponse, AssetType, StyleId,
-  AnimationType, ExportTarget, FrameMeta,
+  ExportTarget, FrameMeta,
 } from "./types";
 import {
-  ASSET_TYPE_LABELS, STYLE_LABELS, ANIM_LABELS, EXPORT_LABELS,
+  ASSET_TYPE_LABELS, STYLE_LABELS, EXPORT_LABELS,
 } from "./types";
 
-const SIZES = [16, 32, 64, 128];
-const FRAME_COUNTS = [1, 2, 4, 8];
+const SIZES = [16, 32, 64, 128, 256];
 
 export default function App() {
   // ——— 状态 ———
@@ -21,10 +20,9 @@ export default function App() {
   const [style, setStyle] = useState<StyleId>("pixel_art");
   const [width, setWidth] = useState(64);
   const [height, setHeight] = useState(64);
-  const [frames, setFrames] = useState(4);
-  const [anim, setAnim] = useState<AnimationType>("idle");
   const [target, setTarget] = useState<ExportTarget>("generic");
   const [seed, setSeed] = useState<number | null>(42);
+  const [lastSeed, setLastSeed] = useState<number | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -46,11 +44,14 @@ export default function App() {
     try {
       const res = await generateAsset({
         prompt, assetType, styleId: style, width, height,
-        frameCount: frames, animation: anim, transparent: true,
+        transparent: true,
         seed, exportTarget: target,
       });
       setResult(res);
       setHistory((prev) => [res, ...prev.slice(0, 19)]);
+
+      // 记录本次使用的 seed
+      if (seed !== null) setLastSeed(seed);
 
       // 拉取 metadata
       try {
@@ -61,6 +62,11 @@ export default function App() {
       setError((e as Error).message);
     }
     setLoading(false);
+  };
+
+  // ——— 一键复用上次 seed ———
+  const reuseLastSeed = () => {
+    if (lastSeed !== null) setSeed(lastSeed);
   };
 
   // ——— 下载 ZIP ———
@@ -130,22 +136,6 @@ export default function App() {
             </div>
           </div>
 
-          <label className="field">帧数 FrameCount</label>
-          <div className="chips">
-            {FRAME_COUNTS.map((v) => (
-              <button key={v} className={`chip ${frames === v ? "active" : ""}`}
-                onClick={() => setFrames(v)}>{v}</button>
-            ))}
-          </div>
-
-          <label className="field">动画 Animation</label>
-          <div className="chips">
-            {(Object.entries(ANIM_LABELS) as [AnimationType, string][]).map(([k, v]) => (
-              <button key={k} className={`chip ${anim === k ? "active" : ""}`}
-                onClick={() => setAnim(k)}>{v}</button>
-            ))}
-          </div>
-
           <label className="field">导出目标 ExportTarget</label>
           <select className="select" value={target}
             onChange={(e) => setTarget(e.target.value as ExportTarget)}>
@@ -154,7 +144,15 @@ export default function App() {
             ))}
           </select>
 
-          <label className="field">种子 Seed</label>
+          <label className="field">
+            种子 Seed
+            {lastSeed !== null && (
+              <button className="reuse-seed-btn" onClick={reuseLastSeed}
+                title={`复用上次 seed: ${lastSeed}`}>
+                复用上次
+              </button>
+            )}
+          </label>
           <input className="input" type="number"
             value={seed ?? ""}
             onChange={(e) => setSeed(e.target.value ? Number(e.target.value) : null)}
@@ -175,12 +173,33 @@ export default function App() {
 
           {result && !loading && (
             <div className="result-area">
+              {/* Cache Hit 提示 */}
+              {result.cacheHit && (
+                <div className="cache-hit-badge">
+                  缓存命中 Cache Hit — 相同参数已生成过，直接复用结果
+                </div>
+              )}
+
               {/* 元信息 */}
               <div className="meta-bar">
                 <span className="tag">Job: {result.jobId}</span>
                 <span className="tag">帧: {result.assets.length}</span>
-                <span className="tag">{width}×{height}</span>
+                <span className="tag">{width} x {height}</span>
+                {result.cacheHit && <span className="tag cache-tag">缓存</span>}
               </div>
+
+              {/* 生成参数摘要 */}
+              {metadata && (
+                <section className="section">
+                  <h3>生成参数</h3>
+                  <div className="params-bar">
+                    <code>prompt="{metadata.prompt}"</code>
+                    <code>style={metadata.styleId}</code>
+                    <code>type={metadata.assetType}</code>
+                    <code>seed={metadata.seed}</code>
+                  </div>
+                </section>
+              )}
 
               {/* Sprite Sheet */}
               {spritesheetSrc && (
@@ -215,9 +234,8 @@ export default function App() {
                     <div><span>jobId</span><code>{metadata.jobId}</code></div>
                     <div><span>frameWidth</span><code>{metadata.frameWidth}px</code></div>
                     <div><span>frameHeight</span><code>{metadata.frameHeight}px</code></div>
-                    <div><span>frameCount</span><code>{metadata.frameCount}</code></div>
-                    <div><span>animation</span><code>{metadata.animation}</code></div>
                     <div><span>spritesheet</span><code>{metadata.spritesheet}</code></div>
+                    <div><span>cacheHit</span><code>{String(metadata.cacheHit)}</code></div>
                     <div><span>compatibleWith</span>
                       <code>{(metadata.compatibleWith || []).join(", ")}</code>
                     </div>
@@ -226,7 +244,7 @@ export default function App() {
                         <span>frames</span>
                         <div>
                           {(metadata.frames as FrameMeta[]).map((f, i) => (
-                            <code key={i}>{f.filename}: x={f.x} y={f.y} w={f.w}h={f.h} {f.duration}ms</code>
+                            <code key={i}>{f.filename}: x={f.x} y={f.y} w={f.w} h={f.h} {f.duration}ms</code>
                           ))}
                         </div>
                       </div>
@@ -245,7 +263,7 @@ export default function App() {
           {!result && !loading && (
             <div className="empty-state">
               <p>输入参数，点击「生成素材」开始</p>
-              <p className="hint">默认示例：一只蓝色史莱姆 · 像素风 · idle 动画 · 4帧</p>
+              <p className="hint">默认示例：一只蓝色史莱姆 · 像素风 · 64×64</p>
             </div>
           )}
         </main>
@@ -267,7 +285,7 @@ export default function App() {
                 }}>
                 <img src={assetUrl(h.spritesheetUrl)} alt={h.jobId}
                   className={style === "pixel_art" ? "pixel" : "smooth"} />
-                <span>{h.jobId.slice(0, 6)}</span>
+                <span>{h.jobId.slice(0, 6)}{h.cacheHit ? " ♻" : ""}</span>
               </div>
             ))}
           </div>

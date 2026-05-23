@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "character",
+  "prompt": "关羽",
+  "animation": "idle",
+  "frame": 3,
+  "shape": "humanoid",
+  "element": "neutral",
+  "pivot": [
+    32,
+    32
+  ]
+}
