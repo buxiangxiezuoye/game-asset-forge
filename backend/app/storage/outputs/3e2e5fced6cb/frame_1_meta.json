@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "sci_fi_ui",
+  "asset_type": "character",
+  "prompt": "",
+  "animation": "attack",
+  "frame": 1,
+  "shape": "humanoid",
+  "element": "neutral",
+  "pivot": [
+    32,
+    32
+  ]
+}

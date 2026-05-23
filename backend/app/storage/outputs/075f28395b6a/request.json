@@ -1,0 +1,12 @@
+{
+  "prompt": "test",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 32,
+  "height": 32,
+  "frameCount": 1,
+  "animation": "none",
+  "transparent": true,
+  "seed": 1,
+  "exportTarget": "generic"
+}

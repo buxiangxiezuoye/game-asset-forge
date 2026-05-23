@@ -1,0 +1,18 @@
+{
+  "tags": [
+    "敌人"
+  ],
+  "generator": "mock",
+  "frame": 0,
+  "seed": 925872523,
+  "width": 32,
+  "height": 32,
+  "style": "fantasy_painterly",
+  "asset_type": "enemy",
+  "prompt": "冰霜剑",
+  "animation": "idle",
+  "pivot": [
+    16,
+    16
+  ]
+}

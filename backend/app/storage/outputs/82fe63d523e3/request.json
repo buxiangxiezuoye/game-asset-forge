@@ -1,0 +1,12 @@
+{
+  "prompt": "火焰史莱姆",
+  "assetType": "enemy",
+  "styleId": "fantasy_painterly",
+  "width": 32,
+  "height": 32,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

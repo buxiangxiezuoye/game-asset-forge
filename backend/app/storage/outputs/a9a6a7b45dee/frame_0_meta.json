@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 48,
+  "height": 48,
+  "style": "flat_cartoon",
+  "asset_type": "ui_icon",
+  "prompt": "技能图标",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "icon",
+  "element": "neutral",
+  "pivot": [
+    24,
+    24
+  ]
+}

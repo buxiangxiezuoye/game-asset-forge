@@ -1,0 +1,22 @@
+{
+  "jobId": "3a55d7798a4e",
+  "prompt": "草地瓦片",
+  "assetType": "tile",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "generic",
+  "seed": 1707070144,
+  "generatedAt": "2026-05-23T11:03:20.342445+00:00",
+  "assets": [
+    {
+      "id": "3a55d7798a4e_f0",
+      "url": "/outputs/3a55d7798a4e/frame_0.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    }
+  ]
+}

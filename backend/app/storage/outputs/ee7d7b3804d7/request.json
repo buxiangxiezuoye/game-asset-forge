@@ -1,0 +1,12 @@
+{
+  "prompt": "金色宝剑",
+  "assetType": "item",
+  "styleId": "flat_cartoon",
+  "width": 48,
+  "height": 48,
+  "frameCount": 2,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 100,
+  "exportTarget": "generic"
+}

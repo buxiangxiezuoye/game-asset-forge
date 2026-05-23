@@ -1,0 +1,12 @@
+{
+  "prompt": "蓝色按钮",
+  "assetType": "ui",
+  "styleId": "flat_cartoon",
+  "width": 48,
+  "height": 48,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 999,
+  "exportTarget": "generic"
+}

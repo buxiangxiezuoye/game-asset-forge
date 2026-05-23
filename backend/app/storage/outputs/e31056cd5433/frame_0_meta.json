@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 32,
+  "height": 32,
+  "style": "pixel_art",
+  "asset_type": "tile",
+  "prompt": "草地瓦片",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "grass",
+  "element": "grass",
+  "pivot": [
+    16,
+    16
+  ]
+}

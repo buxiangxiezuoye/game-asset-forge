@@ -1,0 +1,53 @@
+{
+  "jobId": "2d798edcc8f9",
+  "prompt": "红色战士",
+  "assetType": "character",
+  "styleId": "flat_cartoon",
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "frameCount": 4,
+  "animation": "walk",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 100
+    },
+    {
+      "filename": "frame_1.png",
+      "x": 48,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    },
+    {
+      "filename": "frame_2.png",
+      "x": 96,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    },
+    {
+      "filename": "frame_3.png",
+      "x": 144,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 100,
+  "generatedAt": "2026-05-23T11:08:27.195146+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

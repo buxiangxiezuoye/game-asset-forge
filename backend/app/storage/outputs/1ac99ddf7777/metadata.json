@@ -1,0 +1,22 @@
+{
+  "jobId": "1ac99ddf7777",
+  "prompt": "火焰史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "generic",
+  "seed": 932299361,
+  "generatedAt": "2026-05-23T11:03:20.330901+00:00",
+  "assets": [
+    {
+      "id": "1ac99ddf7777_f0",
+      "url": "/outputs/1ac99ddf7777/frame_0.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    }
+  ]
+}

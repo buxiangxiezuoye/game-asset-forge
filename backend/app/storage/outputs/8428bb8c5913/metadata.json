@@ -1,0 +1,29 @@
+{
+  "jobId": "8428bb8c5913",
+  "prompt": "关羽",
+  "assetType": "ui_icon",
+  "styleId": "fantasy_painterly",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "frameCount": 1,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 40,
+  "generatedAt": "2026-05-23T11:30:32.057975+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "prompt": "绿色史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "frameCount": 3,
+  "animation": "walk",
+  "transparent": true,
+  "seed": 200,
+  "exportTarget": "generic"
+}

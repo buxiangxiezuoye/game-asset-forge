@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 48,
+  "height": 48,
+  "style": "pixel_art",
+  "asset_type": "item",
+  "prompt": "生命药水",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "potion",
+  "element": "water",
+  "pivot": [
+    24,
+    24
+  ]
+}

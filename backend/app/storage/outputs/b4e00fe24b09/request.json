@@ -1,0 +1,12 @@
+{
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "character",
+  "styleId": "sci_fi_ui",
+  "width": 64,
+  "height": 64,
+  "frameCount": 4,
+  "animation": "attack",
+  "transparent": true,
+  "seed": 42,
+  "exportTarget": "generic"
+}

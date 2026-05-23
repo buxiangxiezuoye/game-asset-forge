@@ -1,0 +1,24 @@
+{
+  "size": [
+    32,
+    32
+  ],
+  "frameWidth": 32,
+  "frameHeight": 32,
+  "frameCount": 1,
+  "columns": 1,
+  "frames": {
+    "frame_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "pivot": [
+        16,
+        16
+      ]
+    }
+  }
+}

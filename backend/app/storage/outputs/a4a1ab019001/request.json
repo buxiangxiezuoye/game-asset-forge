@@ -1,0 +1,12 @@
+{
+  "prompt": "生命药水",
+  "assetType": "item",
+  "styleId": "pixel_art",
+  "width": 48,
+  "height": 48,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 999,
+  "exportTarget": "generic"
+}

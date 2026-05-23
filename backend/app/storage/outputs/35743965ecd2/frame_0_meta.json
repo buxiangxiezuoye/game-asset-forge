@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 128,
+  "height": 128,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "一只红色史莱姆",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "slime",
+  "element": "neutral",
+  "pivot": [
+    64,
+    64
+  ]
+}

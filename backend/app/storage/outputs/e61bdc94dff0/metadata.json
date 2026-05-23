@@ -1,0 +1,43 @@
+{
+  "jobId": "e61bdc94dff0",
+  "prompt": "红色战士",
+  "assetType": "character",
+  "styleId": "flat_cartoon",
+  "width": 64,
+  "height": 64,
+  "frameCount": 4,
+  "animation": "walk",
+  "exportTarget": "generic",
+  "seed": 1166961,
+  "generatedAt": "2026-05-23T11:03:20.250784+00:00",
+  "assets": [
+    {
+      "id": "e61bdc94dff0_f0",
+      "url": "/outputs/e61bdc94dff0/frame_0.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "id": "e61bdc94dff0_f1",
+      "url": "/outputs/e61bdc94dff0/frame_1.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "id": "e61bdc94dff0_f2",
+      "url": "/outputs/e61bdc94dff0/frame_2.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "id": "e61bdc94dff0_f3",
+      "url": "/outputs/e61bdc94dff0/frame_3.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    }
+  ]
+}

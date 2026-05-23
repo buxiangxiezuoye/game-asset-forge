@@ -1,0 +1,22 @@
+{
+  "jobId": "935b7e9708d0",
+  "prompt": "草地瓦片",
+  "assetType": "enemy",
+  "styleId": "fantasy_painterly",
+  "width": 32,
+  "height": 32,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "generic",
+  "seed": 610158817,
+  "generatedAt": "2026-05-23T11:02:47.726147+00:00",
+  "assets": [
+    {
+      "id": "935b7e9708d0_f0",
+      "url": "/outputs/935b7e9708d0/frame_0.png",
+      "type": "frame",
+      "width": 32,
+      "height": 32
+    }
+  ]
+}

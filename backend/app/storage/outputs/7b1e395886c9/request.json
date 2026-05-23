@@ -1,0 +1,12 @@
+{
+  "prompt": "冰霜剑",
+  "assetType": "item",
+  "styleId": "flat_cartoon",
+  "width": 48,
+  "height": 48,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 999,
+  "exportTarget": "generic"
+}

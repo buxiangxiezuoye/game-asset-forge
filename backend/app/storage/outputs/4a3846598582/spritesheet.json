@@ -1,0 +1,36 @@
+{
+  "size": [
+    144,
+    48
+  ],
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "frameCount": 3,
+  "layout": "horizontal",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 100
+    },
+    {
+      "filename": "frame_1.png",
+      "x": 48,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    },
+    {
+      "filename": "frame_2.png",
+      "x": 96,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    }
+  ]
+}

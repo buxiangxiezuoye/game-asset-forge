@@ -1,0 +1,12 @@
+{
+  "prompt": "火焰史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 48,
+  "height": 48,
+  "frameCount": 2,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 100,
+  "exportTarget": "generic"
+}

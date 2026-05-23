@@ -1,0 +1,29 @@
+{
+  "jobId": "44e9b9bb2d2e",
+  "prompt": "test",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "frameWidth": 32,
+  "frameHeight": 32,
+  "frameCount": 1,
+  "animation": "none",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 32,
+      "h": 32,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 1,
+  "generatedAt": "2026-05-23T11:36:46.355156+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "prompt": "科幻按钮",
+  "assetType": "ui",
+  "styleId": "sci_fi_ui",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

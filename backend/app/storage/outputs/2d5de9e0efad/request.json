@@ -1,0 +1,12 @@
+{
+  "prompt": "石头瓦片",
+  "assetType": "tile",
+  "styleId": "flat_cartoon",
+  "width": 32,
+  "height": 32,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 999,
+  "exportTarget": "generic"
+}

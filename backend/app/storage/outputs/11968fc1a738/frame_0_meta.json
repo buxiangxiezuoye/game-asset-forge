@@ -1,0 +1,19 @@
+{
+  "tags": [
+    "UI",
+    "按钮"
+  ],
+  "generator": "mock",
+  "frame": 0,
+  "seed": 693023634,
+  "width": 64,
+  "height": 64,
+  "style": "sci_fi_ui",
+  "asset_type": "ui",
+  "prompt": "科幻按钮",
+  "animation": "idle",
+  "pivot": [
+    32,
+    32
+  ]
+}

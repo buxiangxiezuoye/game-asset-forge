@@ -1,0 +1,12 @@
+{
+  "prompt": "草地瓦片",
+  "assetType": "tile",
+  "styleId": "pixel_art",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

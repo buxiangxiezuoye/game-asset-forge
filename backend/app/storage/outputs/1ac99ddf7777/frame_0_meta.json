@@ -1,0 +1,18 @@
+{
+  "tags": [
+    "敌人"
+  ],
+  "generator": "mock",
+  "frame": 0,
+  "seed": 932299361,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "火焰史莱姆",
+  "animation": "idle",
+  "pivot": [
+    32,
+    32
+  ]
+}

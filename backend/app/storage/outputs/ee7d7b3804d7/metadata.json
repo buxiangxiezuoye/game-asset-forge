@@ -1,0 +1,37 @@
+{
+  "jobId": "ee7d7b3804d7",
+  "prompt": "金色宝剑",
+  "assetType": "item",
+  "styleId": "flat_cartoon",
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "frameCount": 2,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 100
+    },
+    {
+      "filename": "frame_1.png",
+      "x": 48,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 100,
+  "generatedAt": "2026-05-23T11:09:51.761432+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

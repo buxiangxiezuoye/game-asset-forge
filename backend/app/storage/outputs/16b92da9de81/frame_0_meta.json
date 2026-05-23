@@ -1,0 +1,19 @@
+{
+  "tags": [
+    "道具",
+    "剑"
+  ],
+  "generator": "mock",
+  "frame": 0,
+  "seed": 1602468013,
+  "width": 64,
+  "height": 64,
+  "style": "fantasy_painterly",
+  "asset_type": "item",
+  "prompt": "冰霜剑",
+  "animation": "idle",
+  "pivot": [
+    32,
+    32
+  ]
+}

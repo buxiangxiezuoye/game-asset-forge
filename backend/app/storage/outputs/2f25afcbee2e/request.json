@@ -1,0 +1,12 @@
+{
+  "prompt": "技能图标",
+  "assetType": "ui_icon",
+  "styleId": "flat_cartoon",
+  "width": 48,
+  "height": 48,
+  "frameCount": 2,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 100,
+  "exportTarget": "generic"
+}

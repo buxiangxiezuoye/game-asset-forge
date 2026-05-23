@@ -1,0 +1,19 @@
+{
+  "tags": [
+    "瓦片",
+    "草地"
+  ],
+  "generator": "mock",
+  "frame": 0,
+  "seed": 1707070144,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "tile",
+  "prompt": "草地瓦片",
+  "animation": "idle",
+  "pivot": [
+    32,
+    32
+  ]
+}

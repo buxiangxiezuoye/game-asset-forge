@@ -1,0 +1,22 @@
+{
+  "jobId": "11968fc1a738",
+  "prompt": "科幻按钮",
+  "assetType": "ui",
+  "styleId": "sci_fi_ui",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "generic",
+  "seed": 693023634,
+  "generatedAt": "2026-05-23T11:03:20.348447+00:00",
+  "assets": [
+    {
+      "id": "11968fc1a738_f0",
+      "url": "/outputs/11968fc1a738/frame_0.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    }
+  ]
+}

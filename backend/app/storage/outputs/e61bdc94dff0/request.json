@@ -1,0 +1,12 @@
+{
+  "prompt": "红色战士",
+  "assetType": "character",
+  "styleId": "flat_cartoon",
+  "width": 64,
+  "height": 64,
+  "frameCount": 4,
+  "animation": "walk",
+  "transparent": true,
+  "seed": null,
+  "exportTarget": "generic"
+}

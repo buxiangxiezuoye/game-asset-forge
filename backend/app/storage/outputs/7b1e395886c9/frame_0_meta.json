@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 48,
+  "height": 48,
+  "style": "flat_cartoon",
+  "asset_type": "item",
+  "prompt": "冰霜剑",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "sword",
+  "element": "water",
+  "pivot": [
+    24,
+    24
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "prompt": "关羽",
+  "assetType": "item",
+  "styleId": "fantasy_painterly",
+  "width": 128,
+  "height": 128,
+  "frameCount": 1,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 40,
+  "exportTarget": "generic"
+}

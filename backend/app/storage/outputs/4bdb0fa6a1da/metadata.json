@@ -1,0 +1,45 @@
+{
+  "jobId": "4bdb0fa6a1da",
+  "prompt": "绿色史莱姆",
+  "assetType": "enemy",
+  "styleId": "flat_cartoon",
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "frameCount": 3,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 100
+    },
+    {
+      "filename": "frame_1.png",
+      "x": 48,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    },
+    {
+      "filename": "frame_2.png",
+      "x": 96,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 150
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 200,
+  "generatedAt": "2026-05-23T11:10:49.367930+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

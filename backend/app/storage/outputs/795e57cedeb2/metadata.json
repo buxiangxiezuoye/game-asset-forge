@@ -1,0 +1,22 @@
+{
+  "jobId": "795e57cedeb2",
+  "prompt": "一只蓝色史莱姆",
+  "assetType": "enemy",
+  "styleId": "pixel_art",
+  "width": 32,
+  "height": 32,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "godot",
+  "seed": 1234,
+  "generatedAt": "2026-05-23T11:02:47.619748+00:00",
+  "assets": [
+    {
+      "id": "795e57cedeb2_f0",
+      "url": "/outputs/795e57cedeb2/frame_0.png",
+      "type": "frame",
+      "width": 32,
+      "height": 32
+    }
+  ]
+}

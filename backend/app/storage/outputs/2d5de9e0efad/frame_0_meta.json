@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 32,
+  "height": 32,
+  "style": "flat_cartoon",
+  "asset_type": "tile",
+  "prompt": "石头瓦片",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "stone",
+  "element": "neutral",
+  "pivot": [
+    16,
+    16
+  ]
+}

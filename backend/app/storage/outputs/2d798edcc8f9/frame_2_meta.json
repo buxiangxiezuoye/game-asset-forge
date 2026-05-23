@@ -1,0 +1,16 @@
+{
+  "seed": 100,
+  "width": 48,
+  "height": 48,
+  "style": "flat_cartoon",
+  "asset_type": "character",
+  "prompt": "红色战士",
+  "animation": "walk",
+  "frame": 2,
+  "shape": "humanoid",
+  "element": "neutral",
+  "pivot": [
+    24,
+    24
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tags": [
+    "角色"
+  ],
+  "generator": "mock",
+  "frame": 2,
+  "seed": 137730055,
+  "width": 64,
+  "height": 64,
+  "style": "flat_cartoon",
+  "asset_type": "character",
+  "prompt": "红色战士",
+  "animation": "walk",
+  "pivot": [
+    32,
+    32
+  ]
+}

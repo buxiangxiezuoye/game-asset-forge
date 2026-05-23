@@ -1,0 +1,29 @@
+{
+  "jobId": "59f65e6195f0",
+  "prompt": "蓝色按钮",
+  "assetType": "ui",
+  "styleId": "flat_cartoon",
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "frameCount": 1,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 48,
+      "h": 48,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 999,
+  "generatedAt": "2026-05-23T11:10:49.681152+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "seed": 999,
+  "width": 48,
+  "height": 48,
+  "style": "flat_cartoon",
+  "asset_type": "ui",
+  "prompt": "蓝色按钮",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "button",
+  "element": "neutral",
+  "pivot": [
+    24,
+    24
+  ]
+}

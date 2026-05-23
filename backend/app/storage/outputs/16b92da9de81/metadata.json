@@ -1,0 +1,22 @@
+{
+  "jobId": "16b92da9de81",
+  "prompt": "冰霜剑",
+  "assetType": "item",
+  "styleId": "fantasy_painterly",
+  "width": 64,
+  "height": 64,
+  "frameCount": 1,
+  "animation": "idle",
+  "exportTarget": "generic",
+  "seed": 1602468013,
+  "generatedAt": "2026-05-23T11:03:20.336445+00:00",
+  "assets": [
+    {
+      "id": "16b92da9de81_f0",
+      "url": "/outputs/16b92da9de81/frame_0.png",
+      "type": "frame",
+      "width": 64,
+      "height": 64
+    }
+  ]
+}

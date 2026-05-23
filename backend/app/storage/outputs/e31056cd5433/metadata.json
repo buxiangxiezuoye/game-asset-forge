@@ -1,0 +1,29 @@
+{
+  "jobId": "e31056cd5433",
+  "prompt": "草地瓦片",
+  "assetType": "tile",
+  "styleId": "pixel_art",
+  "frameWidth": 32,
+  "frameHeight": 32,
+  "frameCount": 1,
+  "animation": "idle",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 32,
+      "h": 32,
+      "duration": 100
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 999,
+  "generatedAt": "2026-05-23T11:10:49.667130+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

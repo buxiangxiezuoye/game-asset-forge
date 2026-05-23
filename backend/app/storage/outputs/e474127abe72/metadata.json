@@ -1,0 +1,53 @@
+{
+  "jobId": "e474127abe72",
+  "prompt": "红色史莱姆",
+  "assetType": "enemy",
+  "styleId": "flat_cartoon",
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "frameCount": 4,
+  "animation": "walk",
+  "spritesheet": "spritesheet.png",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 64,
+      "h": 64,
+      "duration": 100
+    },
+    {
+      "filename": "frame_1.png",
+      "x": 64,
+      "y": 0,
+      "w": 64,
+      "h": 64,
+      "duration": 150
+    },
+    {
+      "filename": "frame_2.png",
+      "x": 128,
+      "y": 0,
+      "w": 64,
+      "h": 64,
+      "duration": 150
+    },
+    {
+      "filename": "frame_3.png",
+      "x": 192,
+      "y": 0,
+      "w": 64,
+      "h": 64,
+      "duration": 150
+    }
+  ],
+  "exportTarget": "generic",
+  "seed": 999,
+  "generatedAt": "2026-05-23T11:10:49.635128+00:00",
+  "compatibleWith": [
+    "Unity",
+    "Godot",
+    "Aseprite"
+  ]
+}

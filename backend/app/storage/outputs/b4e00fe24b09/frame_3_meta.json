@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "sci_fi_ui",
+  "asset_type": "character",
+  "prompt": "一只蓝色史莱姆",
+  "animation": "attack",
+  "frame": 3,
+  "shape": "slime",
+  "element": "neutral",
+  "pivot": [
+    32,
+    32
+  ]
+}

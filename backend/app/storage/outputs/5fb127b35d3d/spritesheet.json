@@ -1,0 +1,20 @@
+{
+  "size": [
+    128,
+    128
+  ],
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "frameCount": 1,
+  "layout": "horizontal",
+  "frames": [
+    {
+      "filename": "frame_0.png",
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128,
+      "duration": 100
+    }
+  ]
+}

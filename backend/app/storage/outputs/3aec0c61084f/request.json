@@ -1,0 +1,12 @@
+{
+  "prompt": "一只红色史莱姆",
+  "assetType": "enemy",
+  "styleId": "hand_drawn",
+  "width": 128,
+  "height": 128,
+  "frameCount": 8,
+  "animation": "idle",
+  "transparent": true,
+  "seed": 40,
+  "exportTarget": "generic"
+}

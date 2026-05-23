@@ -1,0 +1,16 @@
+{
+  "seed": 40,
+  "width": 128,
+  "height": 128,
+  "style": "fantasy_painterly",
+  "asset_type": "enemy",
+  "prompt": "原神胡桃",
+  "animation": "idle",
+  "frame": 0,
+  "shape": "slime",
+  "element": "neutral",
+  "pivot": [
+    64,
+    64
+  ]
+}

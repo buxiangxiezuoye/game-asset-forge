@@ -1,0 +1,12 @@
+{
+  "prompt": "红色史莱姆",
+  "assetType": "enemy",
+  "styleId": "flat_cartoon",
+  "width": 64,
+  "height": 64,
+  "frameCount": 4,
+  "animation": "walk",
+  "transparent": true,
+  "seed": 999,
+  "exportTarget": "generic"
+}
