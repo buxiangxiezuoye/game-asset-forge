@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "width": 64,
+  "height": 64,
+  "style": "pixel_art",
+  "asset_type": "enemy",
+  "prompt": "原神甘雨",
+  "enhanced_prompt": "pixel art, 16-bit, sprite, game asset, sharp edges, limited palette, retro game, 原神甘雨",
+  "generator": "ai_http",
+  "pivot": [
+    32,
+    32
+  ]
+}

@@ -2,6 +2,8 @@
 
 文本输入 → 程序化/AI 生成 → 实时预览 → 导出为 Unity/Godot 可用格式。
 
+**演示视频：** [Bilibili — Game Asset Forge 功能演示](https://www.bilibili.com/video/BV11CGW65EhT/?spm_id_from=333.1365.list.card_archive.click&vd_source=750de77005cd8216597e92fd24125ef4)
+
 ## 快速启动
 
 ### 后端
